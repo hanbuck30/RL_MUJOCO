@@ -8,7 +8,7 @@ Configuration file for setting parameters and hyperparameters for the training p
 ### main.py
 The main script to start training and evaluating the agents.
 
-### agents/
+### agents
 Contains implementations of various reinforcement learning algorithms.
 - `__init__.py`: Initialization file for the agents module.
 - `ddpg.py`: Implementation of the Deep Deterministic Policy Gradient (DDPG) algorithm.
@@ -16,27 +16,28 @@ Contains implementations of various reinforcement learning algorithms.
 - `ppo.py`: Implementation of the Proximal Policy Optimization (PPO) algorithm.
 - `sac.py`: Implementation of the Soft Actor-Critic (SAC) algorithm.
 
-### log/
+### log
 Contains logs of training runs for different environments and algorithms.
 
-### model_weights/
+### model_weights
 Contains saved model weights for different environments and algorithms.
 
-### runs/
+### runs
 Contains TensorBoard log files for visualizing training metrics.
 
-### utils/
+### utils
 Contains utility scripts for noise generation and other helper functions.
 - `__init__.py`: Initialization file for the utils module.
 - `noise.py`: Functions for noise generation used in exploration.
 - `utils.py`: Miscellaneous utility functions.
-
-### __pycache__/
-Contains compiled Python files.
 
 ## Usage
 
 1. **Setup**: Ensure you have the required dependencies installed.
    ```bash
    pip install -r requirements.txt
-
+   
+## Implement
+```
+python main.py --env_name Ant-v4 --train True --tensorboard True --algo ppo  
+```
