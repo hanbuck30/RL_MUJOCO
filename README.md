@@ -38,6 +38,7 @@ Contains utility scripts for noise generation and other helper functions.
    pip install -r requirements.txt
    
 ## Implement
-```bash
+**You can write the code in the terminal and execute it**
+```
 python main.py --env_name Ant-v4 --train True --tensorboard True --algo ppo  
 ```
