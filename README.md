@@ -43,4 +43,4 @@ Contains utility scripts for noise generation and other helper functions.
 python main.py --env_name Ant-v4 --train True --tensorboard True --algo ppo  
 ```
 ## Reference
-= **https://github.com/seolhokim/Mujoco-Pytorch.git**
+- **https://github.com/seolhokim/Mujoco-Pytorch.git**
