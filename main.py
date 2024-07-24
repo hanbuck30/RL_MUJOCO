@@ -9,6 +9,7 @@ import os
 import random
 
 from agents.Hebbianppo import HebbianPPO
+from agents.Hebbianppo_back_prop  import HebbianPPO_back_prop
 from agents.ppo import PPO
 from agents.sac import SAC
 from agents.ddpg import DDPG
@@ -86,6 +87,8 @@ if args.algo == 'ppo':
     agent = PPO(writer, device, state_dim, action_dim, agent_args)
 elif args.algo == 'hebbianppo':
     agent = HebbianPPO(writer, device, state_dim, action_dim, agent_args)
+elif args.algo == 'hebbianppo_back_prop':
+    agent = HebbianPPO_back_prop(writer, device, state_dim, action_dim, agent_args)
 elif args.algo == 'sac':
     agent = SAC(writer, device, state_dim, action_dim, agent_args)
 elif args.algo == 'ddpg':

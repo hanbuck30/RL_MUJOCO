@@ -1,4 +1,4 @@
-from networks.network import HebbianActor, HebbianCritic
+from networks.network import HebbianActor, Critic
 from utils.utils import ReplayBuffer, make_mini_batch, convert_to_tensor
 
 import torch
@@ -9,17 +9,17 @@ import torch.optim as optim
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 
-class HebbianPPO(nn.Module):
+class HebbianPPO_back_prop(nn.Module):
     def __init__(self, writer, device, state_dim, action_dim, args):
-        super(HebbianPPO, self).__init__()
+        super(HebbianPPO_back_prop, self).__init__()
         self.args = args
         
         self.data = ReplayBuffer(action_prob_exist=True, max_size=self.args.traj_length, state_dim=state_dim, num_action=action_dim)
         self.actor = HebbianActor(self.args.layer_num, state_dim, action_dim, self.args.hidden_dim, 
                                   self.args.activation_function, self.args.last_activation, self.args.trainable_std)
-        self.critic = HebbianCritic(self.args.layer_num, state_dim, 1, self.args.hidden_dim, 
-                                    self.args.activation_function, self.args.last_activation)
-        
+        self.critic = Critic(self.args.layer_num, state_dim, 1, \
+                             self.args.hidden_dim, self.args.activation_function,self.args.last_activation)
+        self.critic_optimizer = optim.Adam(self.critic.parameters(), lr=self.args.critic_lr)
         self.writer = writer
         self.device = device
         
@@ -82,7 +82,10 @@ class HebbianPPO(nn.Module):
                 # Hebbian optimization
                 with torch.no_grad():
                     self.actor.hebbian_update(state, curr_mu - old_log_prob)
-                    self.critic.hebbian_update(state, value - return_)
+                self.critic_optimizer.zero_grad()
+                critic_loss.backward()
+                nn.utils.clip_grad_norm_(self.critic.parameters(), self.args.max_grad_norm)
+                self.critic_optimizer.step()
                 
                 if self.writer is not None:
                     self.writer.add_scalar("loss/actor_loss", actor_loss.item(), n_epi)
