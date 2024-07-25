@@ -81,7 +81,7 @@ class HebbianPPO_back_prop(nn.Module):
                 
                 # Hebbian optimization
                 with torch.no_grad():
-                    self.actor.hebbian_update(state, curr_mu - old_log_prob)
+                    self.actor.hebbian_update(state, curr_mu )
                 self.critic_optimizer.zero_grad()
                 critic_loss.backward()
                 nn.utils.clip_grad_norm_(self.critic.parameters(), self.args.max_grad_norm)

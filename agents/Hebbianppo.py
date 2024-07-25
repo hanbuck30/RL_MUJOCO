@@ -81,8 +81,8 @@ class HebbianPPO(nn.Module):
                 
                 # Hebbian optimization
                 with torch.no_grad():
-                    self.actor.hebbian_update(state, curr_mu - old_log_prob)
-                    self.critic.hebbian_update(state, value - return_)
+                    self.actor.hebbian_update(state, curr_mu )
+                    self.critic.hebbian_update(state, value)
                 
                 if self.writer is not None:
                     self.writer.add_scalar("loss/actor_loss", actor_loss.item(), n_epi)
