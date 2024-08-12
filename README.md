@@ -1,4 +1,7 @@
 # RL_MUJOCO
+![bak-prop-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/353307fc-8617-4c1d-bd55-ed631675ff6a) Back Propagation using PPO algorithm
+
+
 ## Purpose
 RL-MUJOCO uses optimization-based algorithms such as **SAC, DDPG, and PPO**, as well as bio-plausible algorithms such as **Hebbian PPO and Kollen-Pollack PPO** to simulate multiple environments within the gym.
 
