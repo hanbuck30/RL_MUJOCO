@@ -1,4 +1,4 @@
-# RL_MUJICO
+# RL_MUJOCO
 
 ## Files and Directories
 
