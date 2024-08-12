@@ -1,4 +1,6 @@
 # RL_MUJOCO
+## Purpose
+RL-MUJOCO uses optimization-based algorithms such as SAC, DDPG, and PPO, as well as bio-plausible algorithms such as Hebbian PPO and Kollen-Pollack PPO to simulate multiple environments within the gym.
 
 ## Files and Directories
 
